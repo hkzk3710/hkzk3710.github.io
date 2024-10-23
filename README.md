@@ -6,6 +6,8 @@
 <hr>
 <article>
   <h2><time datetime="">　</time></h2>
+      <h3>今日のひとこと</h3>
+        <p></p> 
       <h3>仕事</h3>
         <p></p>
       <h3>転職</h3>
@@ -16,5 +18,5 @@
         <p></p>
       <h3>イラスト・漫画</h3>
         <p></p>
-    </article>
+</article>
 ```
