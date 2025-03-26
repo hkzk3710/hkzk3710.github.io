@@ -1,22 +1,9 @@
 # hkzk3710.github.io
 
-## 記事の雛形
+## 概要
+hakozakiのポータルサイトです。
+ポートフォリオや、作品の公開をする予定です。
 
-```
-<hr>
-<article>
-  <h2><time datetime="">　</time></h2>
-      <h3>今日のひとこと</h3>
-        <p></p> 
-      <h3>仕事</h3>
-        <p></p>
-      <h3>転職</h3>
-        <p></p>
-      <h3>dev</h3>
-        <p></p>
-      <h3>blender</h3>
-        <p></p>
-      <h3>イラスト・漫画</h3>
-        <p></p>
-</article>
-```
+## 技術選定
+HTML/CSS/Javascript
+理由：基本に立ち返るため
