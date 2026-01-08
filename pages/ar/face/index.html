@@ -70,7 +70,6 @@
       fitCanvas();
       statusEl.textContent = "初期化中…（カメラ許可してください）";
 
-      // ★ ここが修正点：FaceDetectionはそのまま new FaceDetection(...)
       const faceDetection = new FaceDetection({
         locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/${file}`
       });
@@ -97,8 +96,12 @@
 
         const x = box.xCenter * canvas.clientWidth;
         const y = box.yCenter * canvas.clientHeight;
+
+        // 顔の幅（px）
         const faceW = box.width * canvas.clientWidth;
-        const size = Math.max(64, faceW * 1.5);
+
+        // ★顔幅に対して常に100%（= 絵文字の幅 = 顔の幅）
+        const size = faceW;
 
         ctx.drawImage(emojiImg, x - size/2, y - size/2, size, size);
       });
