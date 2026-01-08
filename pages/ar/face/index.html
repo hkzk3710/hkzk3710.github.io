@@ -79,41 +79,39 @@
         minDetectionConfidence: 0.6
       });
 
-      faceDetection.onResults((results) => {
-        ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+faceDetection.onResults((results) => {
+  ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
-        const dets = results?.detections || [];
-        if (dets.length === 0) {
-          statusEl.textContent = "顔が見つかりません（明るい場所で正面を向いてね）";
-          return;
-        }
+  const dets = results?.detections || [];
+  if (dets.length === 0) {
+    statusEl.textContent = "顔が見つかりません（明るい場所で正面を向いてね）";
+    return;
+  }
 
-        statusEl.textContent = `顔検知: ${dets.length}人`;
+  statusEl.textContent = `顔検知: ${dets.length}人`;
 
-        const det = dets[0];
-        const box = det.boundingBox;
-        if (!box) return;
+  const det = dets[0];
+  const box = det.boundingBox;
+  if (!box) return;
 
-        const x = box.xCenter * canvas.clientWidth;
-        const y = box.yCenter * canvas.clientHeight - faceW * 0.05;
+  // 顔の幅（px）を先に計算
+  const faceW = box.width * canvas.clientWidth;
 
-        // 顔の幅（px）
-        const faceW = box.width * canvas.clientWidth;
+  // 顔幅120%を基本
+  const byFace = faceW * 1.2;
 
-// 顔幅120%を基本
-const byFace = faceW * 1.2;
+  // 画面基準の下限（短辺の40%）
+  const minByScreen = Math.min(canvas.clientWidth, canvas.clientHeight) * 0.4;
 
-// 画面基準の下限（短辺の40%）
-const minByScreen = Math.min(
-  canvas.clientWidth,
-  canvas.clientHeight
-) * 0.4;
+  // 最終サイズ
+  const size = Math.max(byFace, minByScreen);
 
-// 最終サイズ
-const size = Math.max(byFace, minByScreen);
+  // 位置（顔中心。少し上にオフセットしたい場合は faceW を使う）
+  const x = box.xCenter * canvas.clientWidth;
+  const y = box.yCenter * canvas.clientHeight - faceW * 0.05;
 
-        ctx.drawImage(emojiImg, x - size/2, y - size/2, size, size);
-      });
+  ctx.drawImage(emojiImg, x - size / 2, y - size / 2, size, size);
+});
 
       async function startCamera() {
         if (camera) camera.stop();
