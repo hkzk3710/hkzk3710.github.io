@@ -98,7 +98,7 @@
         const x = box.xCenter * canvas.clientWidth;
         const y = box.yCenter * canvas.clientHeight;
         const faceW = box.width * canvas.clientWidth;
-        const size = Math.max(64, faceW * 0.9);
+        const size = Math.max(64, faceW * 1.5);
 
         ctx.drawImage(emojiImg, x - size/2, y - size/2, size, size);
       });
