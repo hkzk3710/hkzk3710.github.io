@@ -95,13 +95,22 @@
         if (!box) return;
 
         const x = box.xCenter * canvas.clientWidth;
-        const y = box.yCenter * canvas.clientHeight;
+        const y = box.yCenter * canvas.clientHeight - faceW * 0.05;
 
         // 顔の幅（px）
         const faceW = box.width * canvas.clientWidth;
 
-        // ★顔幅に対して常に100%（= 絵文字の幅 = 顔の幅）
-        const size = faceW;
+// 顔幅120%を基本
+const byFace = faceW * 1.2;
+
+// 画面基準の下限（短辺の40%）
+const minByScreen = Math.min(
+  canvas.clientWidth,
+  canvas.clientHeight
+) * 0.4;
+
+// 最終サイズ
+const size = Math.max(byFace, minByScreen);
 
         ctx.drawImage(emojiImg, x - size/2, y - size/2, size, size);
       });
