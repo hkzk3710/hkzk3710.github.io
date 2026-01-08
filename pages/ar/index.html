@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>AR.js minimum</title>
+  <meta charset="utf-8" />
+  <title>AR.js Image</title>
 
-  <!-- A-Frame -->
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-
-  <!-- AR.js -->
   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
 </head>
 
-<body style="margin: 0; overflow: hidden;">
-<a-scene
-  embedded
-  vr-mode-ui="enabled: false"
-  arjs>
+<body style="margin:0; overflow:hidden;">
+  <a-scene
+    embedded
+    vr-mode-ui="enabled: false"
+    arjs="sourceType: webcam;">
+
+    <!-- 画像を事前読み込み（推奨） -->
+    <a-assets>
+      <img id="pic" src="./animal_melt1_cat.png">
+    </a-assets>
+
     <a-marker preset="hiro">
-      <a-box position="0 0.5 0" material="color: red;"></a-box>
+      <!-- 画像をマーカーの上に貼る -->
+      <a-image
+        src="#pic"
+        position="0 0.5 0"
+        rotation="-90 0 0"
+        width="1.5"
+        height="1.0">
+      </a-image>
     </a-marker>
 
     <a-entity camera></a-entity>
